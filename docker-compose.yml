@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  node-red:
+    build: .
+    image: nodered/prd-node-red:latest
+    container_name: prd-node-red
+    environment:
+      - TZ=Europe/Amsterdam
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - "1880:1880"
+    networks:
+      - home-automation
+    volumes:
+      - ./prd-node-red_data:/data
+
+# NETWORKS
+networks:
+
+  home-automation:
+    name: home-automation
+    driver: bridge
+
+
